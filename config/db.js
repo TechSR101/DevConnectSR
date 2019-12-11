@@ -8,7 +8,8 @@ const connectDB = async () => {
   try {
     await mongoose.connect(db, {
       useUnifiedTopology: true, // to Avoid DeprecationWarning
-      useNewUrlParser: true // to Avoid DeprecationWarning
+      useNewUrlParser: true, // to Avoid DeprecationWarning
+      useCreateIndex: true // to Avoid DeprecationWarning
     }); // Because mongoose.connect return a promise we wanna put await
 
     console.log("MongoDB Connected...");
