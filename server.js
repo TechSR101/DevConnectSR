@@ -6,6 +6,10 @@ const app = express();
 // Connect Database
 connectDB();
 
+// Init Middleware
+// app.use(bodyParser.json()); instead of doing this we used to now
+app.use(express.json({ extended: false }));
+
 app.get("/", (req, res) => res.send("API is running"));
 
 // Define Routes
