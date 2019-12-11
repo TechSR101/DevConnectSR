@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const gravatar = express("gravatar");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
 const { check, validationResult } = require("express-validator");
 const User = require("../api/models/Users");
 
@@ -66,8 +68,22 @@ router.post(
       await user.save(); // because user.save gives us promise so ew use await
 
       // Return jsonwebtoken
+      const payload = {
+        user: {
+          id: user.id // we don't have to use _id mongoose has a abstraction so it becomes id
+        }
+      };
+      jwt.sign(
+        payload,
+        config.get("jwtSecret"),
+        { expiresIn: 360000 }, // optional
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
 
-      res.send("User registered");
+      //   res.send("User registered");
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
