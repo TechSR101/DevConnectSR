@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const gravatar = express("gravatar");
+const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
@@ -46,17 +46,16 @@ router.post(
       }
 
       // Get users gravatar
-      //            NOT WORKING NEED TO FIXED LATER
-      //   const avatar = gravatar.url(email, {
-      //     s: "200", // size
-      //     r: "pg", // rating
-      //     d: "mm" // default
-      //   });
+      const avatar = gravatar.url(email, {
+        s: "200", // size
+        r: "pg", // rating
+        d: "mm" // default
+      });
 
       user = new User({
         name,
         email,
-        // avatar,  NOT WORKING
+        avatar,
         password
       });
 
