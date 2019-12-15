@@ -18,3 +18,4 @@ export const GET_REPOS = "GET_REPOS";
 export const GET_POSTS = "GET_POSTS"; // (3.1)
 export const POST_ERROR = "POST_ERROR"; // (3.1)
 export const UPDATE_LIKES = "UPDATE_LIKES";
+export const DELETE_POST = "DELETE_POST";
