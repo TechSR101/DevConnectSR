@@ -7,6 +7,7 @@ import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
+import ProfileGithub from "./ProfileGithub";
 import { getProfileById } from "../../actions/profile";
 
 const Profile = ({
@@ -36,11 +37,12 @@ const Profile = ({
               </Link>
             )}
 
-          {/* Experience */}
-
           <div class="profile-grid my-1">
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
+
+            {/* Experience */}
+
             <div className="profile-exp bg-white p-2">
               <h2 className="text-primary">Experience</h2>
               {profile.experience.length > 0 ? (
@@ -74,6 +76,12 @@ const Profile = ({
                 <h4>No education credentials</h4>
               )}
             </div>
+
+            {/* Github Repo */}
+
+            {profile.githubusername && (
+              <ProfileGithub username={profile.githubusername} />
+            )}
           </div>
         </Fragment>
       )}
